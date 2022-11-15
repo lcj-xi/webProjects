@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head >
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+
+
+    <script src="/js/jquery-3.6.1.min.js"></script>
+
+
+</head>
+<body>
+
+<form class="form-inline">
+    <div class="form-group">
+        <label class="sr-only" for="sname">Amount (in dollars)</label>
+        <div class="input-group">
+            <div class="input-group-addon" >姓名:</div>
+            <input type="text" class="form-control" id="sname" placeholder="名字">
+
+        </div>
+    </div>
+    <button type="button" onclick="findByName()" class="btn btn-primary">查询</button>
+</form>
+
+<br>
+
+<div class="container-fluid">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+        </tr>
+        </thead>
+        <tbody id="studentID">
+
+<!--        <tr data-th-each="student:${data}">-->
+<!--            <th scope="row" data-th-text="${student.id}"></th>-->
+<!--            <td  data-th-text="${student.name}"></td>-->
+<!--            <td data-th-text="${student.age}">Thornton</td>-->
+<!--            <td data-th-text="${student.gender}">@fat</td>-->
+<!--        </tr>-->
+
+
+        </tbody>
+    </table>
+
+</div>
+
+
+
+<script src="/js/bootstrap.js"></script>
+<script type="text/javascript">
+    // $(function (){
+    //     $.ajax(
+    //         {
+    //             url:'/webapi/student/list',
+    //
+    //         }
+    //     ).done(function (rs){
+    //         var length=rs.length;
+    //         var html="";
+    //         var sname=$("#sname").val();
+    //         for(var i=0;i<length;i++){
+    //
+    //             var item=rs[i]
+    //             if(item.name==sname || sname=="" || sname==null){
+    //                 html+="<tr>"+
+    //                     "<td>"+item.id+"</td>"+
+    //                     "<td>"+item.name+"</td>"+
+    //                     "<td>"+item.age+"</td>"+
+    //                     "<td>"+item.gender+"</td>"+
+    //                     "</tr>"
+    //             }
+    //         }
+    //         $("#studentID").html(html);
+    //     })
+    // })
+    //
+
+    $(function (){
+        $.ajax({
+            url:"../webapi/student/list",
+            type: "get",
+            success:function (rs){
+                var length=rs.length;
+                var html="";
+                for(var i=0;i<length;i++){
+
+                    var item=rs[i]
+                        html+="<tr>"+
+                            "<td>"+item.id+"</td>"+
+                            "<td>"+item.name+"</td>"+
+                            "<td>"+item.age+"</td>"+
+                            "<td>"+item.gender+"</td>"+
+                            "</tr>"
+
+                }
+                $("#studentID").html(html);
+
+            },
+            error:function (){
+                alert("???");
+            }
+
+        })
+    })
+
+    function findByName() {
+        var sname=$("#sname").val();
+
+
+
+            $.ajax(
+                {
+                    url: "../webapi/student/findbyname",
+                    data: {name:sname},
+                    type: "get",
+                    success: function (rs) {
+                        var length = rs.length;
+                        var html = "";
+                        if (length == 0) {
+                            html += "<tr>"
+                                + "<td>未查询到相关该学生信息。</td>"
+                                + "</tr>"
+                        }
+                        else {
+                            for (var i = 0; i < length; i++) {
+
+                                var item = rs[i]
+                                if (item.name == sname || sname == "" || sname == null) {
+                                    html += "<tr>" +
+                                        "<td>" + item.id + "</td>" +
+                                        "<td>" + item.name + "</td>" +
+                                        "<td>" + item.age + "</td>" +
+                                        "<td>" + item.gender + "</td>" +
+                                        "</tr>"
+                                }
+                            }
+                        }
+                        $("#studentID").html(html);
+                    },
+                    error:function () {
+                        alert("???")
+
+                    }
+                }
+
+            )
+
+
+
+
+    }
+
+</script>
+
+</body>
+</html>
