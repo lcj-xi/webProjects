@@ -23,4 +23,13 @@ class StudentServiceTest {
         }
     }
 
+    @Test
+    void insert(){
+        Student student = new Student();
+        student.setId("2020413314");
+        student.setName("朱莉");
+        Student insert = studentService.insert(student);
+
+    }
+
 }

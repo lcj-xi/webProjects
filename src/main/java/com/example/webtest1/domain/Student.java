@@ -13,7 +13,6 @@ import javax.persistence.Table;
 @Table(name = "student")
 public class Student {
     @Id
-    @GeneratedValue
     private String id;
 
     private String name;

@@ -16,18 +16,43 @@ public class StudentRestController {
 
     /**
      * url:https://localhost:8080/webapi/student/list
+     *
      * @return List<Student>
      */
     @GetMapping("list")
-    public List<Student> getAll(){
+    public List<Student> getAll() {
         return studentService.getAllStu();
     }
 
     @GetMapping("findbyname")
-    public List<Student> findByname(@RequestParam("name") String sname){
+    public List<Student> findByname(@RequestParam("name") String sname) {
 
         List<Student> byName = studentService.getByName(sname);
         return byName;
     }
+
+    @GetMapping("findById")
+    public Student findById(String id) {
+        return studentService.findById(id);
+    }
+
+    @PostMapping("insert")
+    public Student insert(Student student) {
+        Student stu = studentService.insert(student);
+        return stu;
+    }
+
+    @PutMapping("update")
+    public Student update(Student student) {
+        return studentService.insert(student);
+    }
+
+    @DeleteMapping("delete")
+    public Student delete(Student student) {
+
+        return studentService.delete(student);
+
+    }
+
 
 }
