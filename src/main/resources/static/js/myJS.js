@@ -25,39 +25,103 @@
 // })
 //
 
+// function loadTable() {
+//     $.ajax({
+//         url: "../webapi/student/list",
+//         type: "get",
+//         success: function (rs) {
+//             var length = rs.length;
+//             var html = "";
+//             for (var i = 0; i < length; i++) {
+//
+//                 var item = rs[i]
+//                 html += "<tr>" +
+//                     "<td>" + item.id + "</td>" +
+//                     "<td>" + item.name + "</td>" +
+//                     "<td>" + item.age + "</td>" +
+//                     "<td>" + item.gender + "</td>" +
+//                     "<td><a herf='#' onclick='edit(" + item.id + ")'>修改</a></td>" +
+//                     "<td><a herf='#' onclick='deleteStudent(" + item.id + ")'>删除</a></td>" +
+//                     "</tr>"
+//
+//             }
+//             $("#studentID").html(html);
+//
+//         },
+//         error: function () {
+//             alert("???");
+//         }
+//
+//     })
+// }
+
 function loadTable() {
-    $.ajax({
-        url: "../webapi/student/list",
-        type: "get",
-        success: function (rs) {
-            var length = rs.length;
-            var html = "";
-            for (var i = 0; i < length; i++) {
 
-                var item = rs[i]
-                html += "<tr>" +
-                    "<td>" + item.id + "</td>" +
-                    "<td>" + item.name + "</td>" +
-                    "<td>" + item.age + "</td>" +
-                    "<td>" + item.gender + "</td>" +
-                    "<td><a herf='#' onclick='edit(" + item.id + ")'>修改</a></td>" +
-                    "<td><a herf='#' onclick='deleteStudent(" + item.id + ")'>删除</a></td>" +
-                    "</tr>"
 
-            }
-            $("#studentID").html(html);
+    $("#studentTable").bootstrapTable("destroy");
+    $('#studentTable').bootstrapTable({
+        url: "/webapi/student/getByPage",
+        striped: true,
+        pagination: true,
+        singleSelect: false,
+        pageSize: 3,
+        pageNumber: 1,
+        sidePagination: "server",
 
+        queryParams: function (params) {
+            var paraObj = {
+                size: params.limit,
+                page: params.offset/params.limit,
+                name:$("#sname").val(),
+                sort: "id",
+                direct: "desc"
+
+            };
+            return paraObj;
         },
-        error: function () {
-            alert("???");
-        }
 
+
+        columns: [{
+            field: 'id',
+            title: '学号'
+        }, {
+            field: 'name',
+            title: '姓名'
+        }, {
+            field: 'gender',
+            title: '性别'
+        }, {
+            field: 'age',
+            title: '年龄'
+        }, {
+            field: 'id',
+            title: '操作',
+            align:"center",
+            width:"80px",
+            formatter:function (filed){
+                return ("<a herf='#' onclick='edit(" +filed+ ")'>修改</a>");
+            }
+        }, {
+            field: 'id',
+            title: '操作',
+            align:"center",
+            width:"80px",
+            formatter:function (filed){
+                return   ("<a herf='#' onclick='deleteStudent(" +filed+ ")'>删除</a>");
+            }
+        }]
     })
 }
 
 $(function () {
     loadTable();
 })
+
+function search(){
+
+
+    loadTable();
+}
 
 function findByName() {
     var sname = $("#sname").val();
@@ -191,23 +255,27 @@ function updateStudent() {
 
 function deleteStudent(id) {
 
+    if(confirm("注意：将要s删除该学生信息！！！")){
 
-    $.ajax(
-        {
-            url: "../webapi/student/delete",
-            method: "delete",
-            data: {
-                id: id
-            },
-            success: function () {
-                loadTable();
-            },
-            error: function () {
-                loadTable();
-                alert("出错了！！！");
+        $.ajax(
+            {
+                url: "../webapi/student/delete",
+                method: "delete",
+                data: {
+                    id: id
+                },
+                success: function () {
+                    loadTable();
+                },
+                error: function () {
+                    loadTable();
+                    alert("出错了！！！");
+                }
+
             }
+        )
 
-        }
-    )
+    }
+
 
 }

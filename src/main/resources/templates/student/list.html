@@ -7,6 +7,7 @@
 
 
     <script src="/js/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="/plugins/bootstraptable/bootstrap-table.min.css">
 
 
 </head>
@@ -65,37 +66,40 @@
         <div class="form-group">
             <label class="sr-only" for="sname">Amount (in dollars)</label>
             <div class="input-group">
-                <div class="input-group-addon">姓名:</div>
+                <div class="input-group-addon">按姓名查询:</div>
                 <input type="text" class="form-control" id="sname" placeholder="名字">
 
             </div>
         </div>
-        <button type="button" onclick="findByName()" class="btn btn-primary">查询</button>
+        <button type="button" onclick="search()" class="btn btn-primary">查询</button>
     </form>
 
 
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>学号</th>
-            <th>姓名</th>
-            <th>年龄</th>
-            <th>性别</th>
-            <th style="width: 100px">操作</th>
-            <th style="width: 100px">操作</th>
-        </tr>
-        </thead>
-        <tbody id="studentID">
+<!--    <table class="table table-bordered">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>学号</th>-->
+<!--            <th>姓名</th>-->
+<!--            <th>年龄</th>-->
+<!--            <th>性别</th>-->
+<!--            <th style="width: 100px">操作</th>-->
+<!--            <th style="width: 100px">操作</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody id="studentID">-->
 
-        <!--        <tr data-th-each="student:${data}">-->
-        <!--            <th scope="row" data-th-text="${student.id}"></th>-->
-        <!--            <td  data-th-text="${student.name}"></td>-->
-        <!--            <td data-th-text="${student.age}">Thornton</td>-->
-        <!--            <td data-th-text="${student.gender}">@fat</td>-->
-        <!--        </tr>-->
+<!--        &lt;!&ndash;        <tr data-th-each="student:${data}">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <th scope="row" data-th-text="${student.id}"></th>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <td  data-th-text="${student.name}"></td>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <td data-th-text="${student.age}">Thornton</td>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <td data-th-text="${student.gender}">@fat</td>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </tr>&ndash;&gt;-->
 
 
-        </tbody>
+<!--        </tbody>-->
+<!--    </table>-->
+    <table class="table table-bordered" id="studentTable">
+
     </table>
 
 </div>
@@ -103,6 +107,9 @@
 
 <script src="/js/bootstrap.js"></script>
 <script src="/js/myJS.js"></script>
+<script src="/plugins/bootstraptable/bootstrap-table.min.js"></script>
+<script src="/plugins/bootstraptable/locale/bootstrap-table-zh-CN.min.js"></script>
+
 
 </body>
 </html>
