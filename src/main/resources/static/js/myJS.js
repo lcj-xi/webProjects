@@ -71,8 +71,8 @@ function loadTable() {
         queryParams: function (params) {
             var paraObj = {
                 size: params.limit,
-                page: params.offset/params.limit,
-                name:$("#sname").val(),
+                page: params.offset / params.limit,
+                name: $("#sname").val(),
                 sort: "id",
                 direct: "desc"
 
@@ -88,26 +88,32 @@ function loadTable() {
             field: 'name',
             title: '姓名'
         }, {
+            field: 'password',
+            title: '密码'
+        }, {
             field: 'gender',
             title: '性别'
         }, {
             field: 'age',
             title: '年龄'
         }, {
+            field: 'score',
+            title: '成绩'
+        }, {
             field: 'id',
             title: '操作',
-            align:"center",
-            width:"80px",
-            formatter:function (filed){
-                return ("<a herf='#' onclick='edit(" +filed+ ")'>修改</a>");
+            align: "center",
+            width: "80px",
+            formatter: function (filed) {
+                return ("<a herf='#' onclick='edit(" + filed + ")'>修改</a>");
             }
         }, {
             field: 'id',
             title: '操作',
-            align:"center",
-            width:"80px",
-            formatter:function (filed){
-                return   ("<a herf='#' onclick='deleteStudent(" +filed+ ")'>删除</a>");
+            align: "center",
+            width: "80px",
+            formatter: function (filed) {
+                return ("<a herf='#' onclick='deleteStudent(" + filed + ")'>删除</a>");
             }
         }]
     })
@@ -117,7 +123,7 @@ $(function () {
     loadTable();
 })
 
-function search(){
+function search() {
 
 
     loadTable();
@@ -171,6 +177,8 @@ function initAdd() {
     $("#name").val("");
     $("#age").val("");
     $("#gender").val("");
+    $("#password").val("");
+    $("#score").val("");
     $("#operation").html("新增");
     $("#operation").removeAttr("onclick");
     $("#operation").attr("onclick", "addStudent()");
@@ -216,6 +224,8 @@ function edit(id) {
                 $("#name").val(re.name);
                 $("#age").val(re.age);
                 $("#gender").val(re.gender);
+                $("#score").val(re.score);
+                $("#password").val(re.password);
                 var attr = $("#operation").html("保存");
                 $("#operation").removeAttr("onclick");
                 $("#operation").attr("onclick", "updateStudent()");
@@ -255,7 +265,7 @@ function updateStudent() {
 
 function deleteStudent(id) {
 
-    if(confirm("注意：将要s删除该学生信息！！！")){
+    if (confirm("注意：将要s删除该学生信息！！！")) {
 
         $.ajax(
             {

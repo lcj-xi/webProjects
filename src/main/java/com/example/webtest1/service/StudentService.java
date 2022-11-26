@@ -22,7 +22,7 @@ public interface StudentService {
 
 
     List<Student> getByName(String name);
-    Student findById(String id);
+    Student findById(Integer id);
 
 
     Student insert(Student student);

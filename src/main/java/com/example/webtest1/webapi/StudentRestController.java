@@ -64,7 +64,7 @@ public class StudentRestController {
     }
 
     @GetMapping("findById")
-    public Student findById(String id) {
+    public Student findById(Integer id) {
         return studentService.findById(id);
     }
 

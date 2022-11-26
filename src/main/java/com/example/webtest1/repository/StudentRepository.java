@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student,String> {
+public interface StudentRepository extends JpaRepository<Student,Integer> {
     public List<Student> findByName(String name);
 
 

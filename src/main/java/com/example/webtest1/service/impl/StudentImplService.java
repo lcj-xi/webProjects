@@ -32,7 +32,7 @@ public class StudentImplService implements StudentService {
         return studentRepository.findByName(name);
     }
 
-    public Student findById(String id){
+    public Student findById(Integer id){
         return  studentRepository.findById(id).orElse(null);
     }
 
