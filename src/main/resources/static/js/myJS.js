@@ -88,9 +88,6 @@ function loadTable() {
             field: 'name',
             title: '姓名'
         }, {
-            field: 'password',
-            title: '密码'
-        }, {
             field: 'gender',
             title: '性别'
         }, {
@@ -225,7 +222,7 @@ function edit(id) {
                 $("#age").val(re.age);
                 $("#gender").val(re.gender);
                 $("#score").val(re.score);
-                $("#password").val(re.password);
+                $("#password").val("");
                 var attr = $("#operation").html("保存");
                 $("#operation").removeAttr("onclick");
                 $("#operation").attr("onclick", "updateStudent()");
