@@ -140,7 +140,7 @@ function findByName() {
                 var html = "";
                 if (length == 0) {
                     html += "<tr>"
-                        + "<td>未查询到相关该学生信息。</td>"
+                        + "<td> 未查询到相关该学生信息。</td>"
                         + "</tr>"
                 } else {
                     for (var i = 0; i < length; i++) {
