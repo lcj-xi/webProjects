@@ -1,6 +1,5 @@
-package com.example.webtest1.Untils;
+package com.example.webtest1.utils;
 
-import com.example.webtest1.domain.Student;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -8,17 +7,17 @@ import java.util.List;
 
 @Data
 
-public class PageUntils implements Serializable {
+public class PageUtils implements Serializable {
     private int total;
     private List<?> rows;
 
 
-    public PageUntils (List<?> list,Long total){
+    public PageUtils(List<?> list, Long total){
         this.rows=list;
         this.total=total.intValue();
     }
 
-    public PageUntils (List<?> list,int total){
+    public PageUtils(List<?> list, int total){
         this.rows=list;
         this.total=total;
     }

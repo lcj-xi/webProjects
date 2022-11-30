@@ -24,6 +24,8 @@ public interface StudentService {
     List<Student> getByName(String name);
     Student findById(Integer id);
 
+    Student getByNameAndPassword(String name,String password);
+
 
     Student insert(Student student);
 

@@ -1,8 +1,11 @@
 package com.example.webtest1.service.impl;
 
 import com.example.webtest1.domain.Student;
+import com.example.webtest1.exception.REnum;
+import com.example.webtest1.exception.RException;
 import com.example.webtest1.repository.StudentRepository;
 import com.example.webtest1.service.StudentService;
+import com.example.webtest1.utils.RUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -34,6 +37,16 @@ public class StudentImplService implements StudentService {
 
     public Student findById(Integer id){
         return  studentRepository.findById(id).orElse(null);
+    }
+
+    public Student getByNameAndPassword(String name,String password){
+        Student student = studentRepository.findByNameAndPassword(name, password);
+        if(student!=null){
+            return student;
+        }
+        else{
+            throw new  RException(REnum.LOGIN_ERROR);
+        }
     }
 
 

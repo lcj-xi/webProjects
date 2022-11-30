@@ -11,6 +11,8 @@ import java.util.Optional;
 public interface StudentRepository extends JpaRepository<Student,Integer> {
     public List<Student> findByName(String name);
 
+    Student  findByNameAndPassword(String name,String password);
+
 
 
 
