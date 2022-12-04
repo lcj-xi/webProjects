@@ -39,7 +39,7 @@ public class StudentImplService implements StudentService {
         return  studentRepository.findById(id).orElse(null);
     }
 
-    public Student getByNameAndPassword(String name,String password){
+    public Student getByNameAndPassword(String name,String password) throws Exception{
         Student student = studentRepository.findByNameAndPassword(name, password);
         if(student!=null){
             return student;
