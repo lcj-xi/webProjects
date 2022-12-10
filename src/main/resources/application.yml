@@ -11,3 +11,20 @@ spring:
     database: mysql
   thymeleaf:
     cache: false
+  logging:
+    config: classpath:logback-spring.xml
+    # 日志文件路径, 部署及运行时可改写以覆盖（中文注释在windows等运行时可能会出问题，这里只是写给大家看的注释）
+    file-location: /var/log/myapp
+    level:
+      dao: debug
+      org:
+        mybatis: debug
+
+server:
+  connection-idle-timeout:
+  reactive:
+    session:
+      cookie:
+        domain:
+
+      timeout: 1

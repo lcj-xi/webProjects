@@ -8,7 +8,8 @@ public enum REnum {
     UNKNOW_ERROR(-999, "未知错误！"),
     COMMON_ERROR(-10, "一般性错误！"),
     LOGIN_ERROR(-2, "登录出错，不正确的密码或用户！"),
-    SUCESS(0, "成功！");
+    SUCESS(0, "成功！"),
+    JUMP(-1,"session失效，跳转登录页面。");
 
 
 

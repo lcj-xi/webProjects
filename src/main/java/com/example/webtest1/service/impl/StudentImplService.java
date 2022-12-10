@@ -5,7 +5,6 @@ import com.example.webtest1.exception.REnum;
 import com.example.webtest1.exception.RException;
 import com.example.webtest1.repository.StudentRepository;
 import com.example.webtest1.service.StudentService;
-import com.example.webtest1.utils.RUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;

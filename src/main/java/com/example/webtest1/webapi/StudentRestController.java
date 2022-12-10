@@ -3,6 +3,8 @@ package com.example.webtest1.webapi;
 import com.example.webtest1.utils.PageUtils;
 import com.example.webtest1.domain.Student;
 import com.example.webtest1.service.StudentService;
+import com.example.webtest1.utils.RUtil;
+import com.example.webtest1.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,11 @@ public class StudentRestController {
      *
      * @return List<Student>
      */
+    @GetMapping("test")
+    public R test(){
+        return RUtil.sucess();
+    }
+
     @GetMapping("list")
     public List<Student> getAll() {
         return studentService.getAllStu();
